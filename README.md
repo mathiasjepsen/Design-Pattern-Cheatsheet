@@ -1,7 +1,7 @@
-#Design-Pattern-Cheatsheet
-#####Table of contents
+# Design-Pattern-Cheatsheet
+##### Table of contents
 [Singleton](#singleton)
-##Singleton
+## Singleton
 Ensure that only one instance of a class is created and provide a global access point to the object.
 
 ```java
