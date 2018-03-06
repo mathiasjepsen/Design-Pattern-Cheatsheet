@@ -7,7 +7,7 @@ public class Canteen {
     
     private static Canteen canteen;
     
-    public static Canteen getCanteen() {
+    public static synchronized Canteen getCanteen() {
         if (canteen == null) {
             canteen = new Canteen();
         }
