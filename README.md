@@ -1,8 +1,10 @@
 # Design-Pattern-Cheatsheet
-##### Table of contents
+
+#### Table of contents
 [Singleton](#singleton)
+
 ## Singleton
-Ensure that only one instance of a class is created and provide a global access point to the object.
+Ensures that only one instance of a class is created and provides a global access point to the object.
 
 ```java
 public class Canteen {
@@ -20,4 +22,13 @@ public class Canteen {
     private Canteen() {}
     
 }
+```
+
+A use of this could be if the canteen were to have a stock of items, then when a student buys something, everybody will see the stock decrease because there's only one instance of the Canteen. These methods will need to have the synchronized keyword or in some other way made to handle concurrency, or else race conditions might occur. 
+
+## Factory
+Creates objects without exposing the instantiation logic to the client and refers to the newly created object through a common interface.
+
+```java
+
 ```
