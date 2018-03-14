@@ -32,3 +32,47 @@ Creates objects without exposing the instantiation logic to the client and refer
 ```java
 
 ```
+
+## Observer
+
+```java
+public class Canteen extends Observable {
+
+    private final boolean hasPizzaInStock = true;
+
+    public void changePizzaStock(boolean stock) {
+        setChanged();
+        notifyObservers(stock);
+    }
+
+}
+```
+```java
+public class Student implements Observer {
+
+    private boolean canteenPizzaStock;
+
+    @Override
+    public void update(Observable o, Object arg) {
+        canteenPizzaStock = (Boolean) arg;
+        System.out.println("The canteen's pizza stock is now: " + canteenPizzaStock);
+    }
+
+}
+```
+```java
+public class Main {
+    
+    public static void main(String[] args) {
+        Canteen canteen = new Canteen();
+        Student lovro = new Student();
+        Student thomas = new Student();
+        Student mathias = new Student();
+        canteen.addObserver(lovro);
+        canteen.addObserver(thomas);
+        canteen.addObserver(mathias);
+        canteen.changePizzaStock(false);
+    }
+    
+}
+```
