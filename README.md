@@ -2,7 +2,9 @@
 
 #### Table of contents
 [Singleton](#singleton)
+
 [Factory](#factory)
+
 [Observer](#observer)
 
 ## Singleton
