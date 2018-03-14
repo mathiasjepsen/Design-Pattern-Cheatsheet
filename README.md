@@ -29,14 +29,14 @@ public class Canteen {
 ```
 
 A use of this could be if the canteen were to have a stock of items, then when a student buys something, everybody will see the stock decrease because there's only one instance of the Canteen. These methods will need to have the synchronized keyword or in some other way made to handle concurrency, or else race conditions might occur. 
-
+___
 ## Factory
 #### Creates objects without exposing the instantiation logic to the client and refers to the newly created object through a common interface.
 
 ```java
 
 ```
-
+___
 ## Observer
 #### Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
@@ -101,3 +101,4 @@ Lovro sees the canteen's pizza stock as: false
 ```
 
 Testing this out in the main, we see that once **changePizzaStock()** is called, every observer is notified of this and receives the new value.
+___
