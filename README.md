@@ -6,7 +6,7 @@
 [Factory](#factory)
 
 [Observer](#observer)
-
+___
 ## Singleton
 #### Ensures that only one instance of a class is created and provides a global access point to the object.
 
