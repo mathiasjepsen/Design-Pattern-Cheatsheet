@@ -6,6 +6,8 @@
 [Factory](#factory)
 
 [Observer](#observer)
+
+[Command](#command)
 ___
 ## Singleton
 #### Ensures that only one instance of a class is created and provides a global access point to the object.
@@ -101,4 +103,146 @@ Lovro sees the canteen's pizza stock as: false
 ```
 
 Testing this out in the main, we see that once **changePizzaStock()** is called, every observer is notified of this and receives the new value.
+
 ___
+## Command
+#### Command decouples the object that invokes the operation from the one that knows how to perform it.
+
+```java
+public interface Command {
+    void execute();
+}
+```
+
+The interface Command has a single method **execute()** 
+
+```java
+public class Calculator {
+
+    private final List<Integer> calculations = new ArrayList<>();
+    private int pointer = 0;
+
+    public int Add(Integer n) {
+        if (calculations.size() > 0) {
+            int headOfCalcs = calculations.get(pointer);
+            int result = headOfCalcs + n;
+            calculations.add(result);
+            pointer++;
+            return result;
+        } else {
+            calculations.add(n);
+            return n;
+        }
+    }
+    ...
+}
+```
+
+```java
+public class Add implements Command {
+
+    private final Calculator calc;
+    private final int numToAdd;
+
+    public Add(Calculator calc, int number) {
+        this.calc = calc;
+        this.numToAdd = number;
+    }
+
+    @Override
+    public void execute() {
+        System.out.println(calc.Add(numToAdd));
+    }
+
+}
+```
+
+```java
+public class Invoker {
+
+    public void run(Command com) {
+        com.execute();
+    }
+
+}
+```
+
+```java
+public class ScannerWordUser {
+
+    private final Calculator calc;
+    private final Scanner scan = new Scanner(System.in);
+    private final Invoker inv = new Invoker();
+
+    public ScannerWordUser(Calculator calc) {
+        this.calc = calc;
+    }
+
+    public void Run() {
+        while (true) {
+            System.out.print(">");
+            String input = scan.nextLine();
+            String operator = input.split(" ")[0];
+            int value;
+            Command com;
+
+            switch (operator) {
+                case "Add":
+                    value = Integer.parseInt(input.split(" ")[1]);
+                    com = new Add(calc, value);
+                    inv.run(com);
+                    break;
+            }
+
+        }
+    }
+}
+```
+
+___
+## Decorator
+#### Decorator design pattern is used to modify the functionality of an object at runtime
+
+```java
+public interface ComparatorDecorator extends Comparator<Integer> {
+    
+    int getNumberOfComparisons();
+    
+}
+```
+
+```java
+public class ComparatorDecoratorImpl implements ComparatorDecorator {
+    
+    int comparisons = 0;
+    
+    @Override
+    public int getNumberOfComparisons() {
+        return comparisons;
+    }
+
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        comparisons++;
+        return o1.compareTo(o2);
+    }
+    
+}
+```
+
+```java
+public class DecoratorPattern {
+
+    public static void main(String[] args) {
+        List<Integer> tempList = new ArrayList<>();
+        for (int i = 0; i < 1000000; i++) {
+            tempList.add(i, (int) (Math.random() * (99 - 1) + 1) + 1);
+        }
+
+        ComparatorDecorator decor = new ComparatorDecoratorImpl();
+        Collections.sort(tempList, decor);
+        System.out.println(decor.getNumberOfComparisons());
+    }
+
+}
+```
