@@ -194,6 +194,7 @@ public class ScannerWordUser {
                     com = new Add(calc, value);
                     inv.run(com);
                     break;
+                ...
             }
 
         }
