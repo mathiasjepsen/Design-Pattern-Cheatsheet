@@ -237,13 +237,15 @@ public class ComparatorDecoratorImpl implements ComparatorDecorator {
 public class DecoratorPattern {
 
     public static void main(String[] args) {
-        List<Integer> tempList = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        Random random = new Random();
+
         for (int i = 0; i < 1000000; i++) {
-            tempList.add(i, (int) (Math.random() * (99 - 1) + 1) + 1);
+            list.add(random.nextInt(1000000));
         }
 
         ComparatorDecorator decor = new ComparatorDecoratorImpl();
-        Collections.sort(tempList, decor);
+        Collections.sort(list, decor);
         System.out.println(decor.getNumberOfComparisons());
     }
 
