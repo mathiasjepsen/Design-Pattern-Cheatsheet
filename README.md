@@ -10,6 +10,8 @@
 [Command](#command)
 
 [Decorator](#decorator)
+
+[Adapter](#adapter)
 ___
 ## Singleton
 #### Ensures that only one instance of a class is created and provides a global access point to the object.
@@ -42,6 +44,8 @@ ___
 ```
 ___
 ## Observer
+### Problem
+When to look for updates about a change in state in a particular object.
 #### Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
 ```java
@@ -251,3 +255,9 @@ public class DecoratorPattern {
 
 }
 ```
+___
+## Adapter
+### Problem
+A third party interface doesn't quite fit the interface you need.
+### Solution
+The adapter interface implements the interface that you need and uses the third party interface(s).
